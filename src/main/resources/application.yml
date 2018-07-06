@@ -4,6 +4,7 @@ spring:
   datasource:
     report:
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      #url: jdbc:sqlserver://58.246.247.114:5569;DatabaseName=UFDATA_100_2018
       url: jdbc:sqlserver://192.168.120.30:1433;DatabaseName=UFDATA_100_2018
       username: sa
       password: sa@123
@@ -13,6 +14,7 @@ spring:
   datasource:
     voucher:
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      #url: jdbc:sqlserver://58.246.247.114:5569;DatabaseName=test
       url: jdbc:sqlserver://192.168.120.30:1433;DatabaseName=test
       username: sa
       password: sa@123
@@ -21,8 +23,8 @@ spring:
 spring:
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: update
+    #hibernate:
+      #ddl-auto: update
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
