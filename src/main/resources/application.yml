@@ -1,3 +1,6 @@
+
+server:
+  port: 80
 ---
 # 报表数据库
 spring:
@@ -22,10 +25,14 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
   mvc:
     static-path-pattern: /static/**
+---
+user:
+  userName : admin
+  password : admin
 
