@@ -16,7 +16,7 @@ public class LoginController {
     @Value("${user.password}")
     private String password;
 
-    @RequestMapping("/api/login")
+    @RequestMapping("/login")
     public Result login( String username, String password) {
         if(StringUtils.isBlank(username)||StringUtils.isBlank(password)){
             return Result.ERROR("用户名或密码为空");
