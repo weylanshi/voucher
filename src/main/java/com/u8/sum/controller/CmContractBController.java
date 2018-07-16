@@ -31,8 +31,10 @@ public class CmContractBController {
                                         @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
                                         @RequestParam(value = "strContractId",defaultValue = "") String strContractId,
                                         @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
-                                        @RequestParam(value = "strContractStartDate",defaultValue = "") String strContractStartDate,
-                                        @RequestParam(value = "strContractEndDate",defaultValue = "") String strContractEndDate){
+                                        @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
+                                        @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2,
+                                        @RequestParam(value = "customerCode",defaultValue = "") String customerCode,
+                                        @RequestParam(value = "supplierCode",defaultValue = "") String supplierCode){
 
         //筛选条件
         Specification<CmContractBEntity> specification = new Specification<CmContractBEntity>() {
@@ -51,17 +53,32 @@ public class CmContractBController {
                 if(!StringUtils.isNullOrEmpty(strContractName)){
                     predicates.add(_strContractName);
                 }
-                //合同开始日期筛选
-                Path<Long> $strContractStartDate = root.get("strContractStartDate");
-                Predicate _strContractStartDate = criteriaBuilder.equal($strContractStartDate, strContractStartDate);
-                if(!StringUtils.isNullOrEmpty(strContractStartDate)){
-                    predicates.add(_strContractStartDate);
+                //合同签订日期筛选
+                Path<Long> $strContractOrderDate = root.get("strContractOrderDate");
+                //Predicate _strContractOrderDate = criteriaBuilder.equal($strContractOrderDate, strContractOrderDate);
+                Predicate _strContractOrderDate = criteriaBuilder.between(root.get("strContractOrderDate").as(String.class),date1,date2);
+                if(!StringUtils.isNullOrEmpty(date1)&!StringUtils.isNullOrEmpty(date2)){
+                   predicates.add(_strContractOrderDate);
                 }
-                //合同结束日期筛选
-                Path<Long> $strContractEndDate = root.get("strContractEndDate");
-                Predicate _strContractEndDate = criteriaBuilder.equal($strContractEndDate, strContractEndDate);
-                if(!StringUtils.isNullOrEmpty(strContractEndDate)){
-                    predicates.add(_strContractEndDate);
+
+                //客户编码筛选
+                //Path<Long> $strContractName = root.get("strContractName");
+
+                if(!StringUtils.isNullOrEmpty(customerCode)){
+                    Predicate _strBisectionUnit = criteriaBuilder.equal(root.get("strBisectionUnit").as(String.class), customerCode);
+                    Predicate _strContractKind = criteriaBuilder.equal(root.get("strContractKind").as(String.class), "应收类合同");
+                    Predicate pr = criteriaBuilder.and(_strBisectionUnit,_strContractKind);
+                    predicates.add(pr);
+                }
+
+                //供应商编码筛选
+                //Path<Long> $strContractName = root.get("strContractName");
+
+                if(!StringUtils.isNullOrEmpty(supplierCode)){
+                    Predicate _strBisectionUnit = criteriaBuilder.equal(root.get("strBisectionUnit").as(String.class), supplierCode);
+                    Predicate _strContractKind = criteriaBuilder.equal(root.get("strContractKind").as(String.class), "应付类合同");
+                    Predicate pr = criteriaBuilder.and(_strBisectionUnit,_strContractKind);
+                    predicates.add(pr);
                 }
 
                 return criteriaBuilder.and(predicates

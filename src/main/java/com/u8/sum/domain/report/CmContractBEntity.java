@@ -7,9 +7,11 @@ import java.io.Serializable;
 @Table(name = "CM_Contract_B", schema = "dbo", catalog = "UFDATA_100_2018")
 public class CmContractBEntity {
     private String guid;
+    private String strBisectionUnit;//客户or供应商编码
     private String strContractId;//合同编码
     private String strContractKind;//合同类型
     private String strContractName;//合同名称
+    private String strContractOrderDate;//合同签订日期
     private String strContractStartDate;//合同开始日期
     private String strContractEndDate;//合同结束日期
     private String strCurrency;//合同币种
@@ -22,6 +24,16 @@ public class CmContractBEntity {
     @Column(name = "guid")
     public String getGuid() {
         return guid;
+    }
+
+    @Basic
+    @Column(name = "strbisectionunit")
+    public String getStrBisectionUnit() {
+        return strBisectionUnit;
+    }
+
+    public void setStrBisectionUnit(String strBisectionUnit) {
+        this.strBisectionUnit = strBisectionUnit;
     }
 
     public void setGuid(String guid) {
@@ -56,6 +68,15 @@ public class CmContractBEntity {
 
     public void setStrContractName(String strContractName) {
         this.strContractName = strContractName;
+    }
+    @Basic
+    @Column(name = "strcontractorderdate")
+    public String getStrContractOrderDate() {
+        return strContractOrderDate;
+    }
+
+    public void setStrContractOrderDate(String strContractOrderDate) {
+        this.strContractOrderDate = strContractOrderDate;
     }
 
     @Basic
@@ -116,11 +137,15 @@ public class CmContractBEntity {
         CmContractBEntity that = (CmContractBEntity) o;
 
         if (guid != null ? !guid.equals(that.guid) : that.guid != null) return false;
+        if (strBisectionUnit != null ? !strBisectionUnit.equals(that.strBisectionUnit) : that.strBisectionUnit != null)
+            return false;
         if (strContractId != null ? !strContractId.equals(that.strContractId) : that.strContractId != null)
             return false;
         if (strContractKind != null ? !strContractKind.equals(that.strContractKind) : that.strContractKind != null)
             return false;
         if (strContractName != null ? !strContractName.equals(that.strContractName) : that.strContractName != null)
+            return false;
+        if (strContractOrderDate != null ? !strContractOrderDate.equals(that.strContractOrderDate) : that.strContractOrderDate != null)
             return false;
         if (strContractStartDate != null ? !strContractStartDate.equals(that.strContractStartDate) : that.strContractStartDate != null)
             return false;
@@ -137,9 +162,11 @@ public class CmContractBEntity {
     @Override
     public int hashCode() {
         int result = guid != null ? guid.hashCode() : 0;
+        result = 31 * result + (strBisectionUnit != null ? strBisectionUnit.hashCode() : 0);
         result = 31 * result + (strContractId != null ? strContractId.hashCode() : 0);
         result = 31 * result + (strContractKind != null ? strContractKind.hashCode() : 0);
         result = 31 * result + (strContractName != null ? strContractName.hashCode() : 0);
+        result = 31 * result + (strContractOrderDate != null ? strContractOrderDate.hashCode() : 0);
         result = 31 * result + (strContractStartDate != null ? strContractStartDate.hashCode() : 0);
         result = 31 * result + (strContractEndDate != null ? strContractEndDate.hashCode() : 0);
         result = 31 * result + (strCurrency != null ? strCurrency.hashCode() : 0);
