@@ -26,7 +26,7 @@ import java.util.List;
 public class CmContractBController {
     @Autowired
     private CmContractBJPA cmContractBJPA;
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list")
     public Page<CmContractBEntity> list(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
                                         @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
                                         @RequestParam(value = "strContractId",defaultValue = "") String strContractId,
