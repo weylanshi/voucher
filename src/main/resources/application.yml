@@ -35,6 +35,6 @@ spring:
   mvc:
     static-path-pattern: /static/**
 server:
-  port: 80
+  port: 8009
   context-path: /api
 
