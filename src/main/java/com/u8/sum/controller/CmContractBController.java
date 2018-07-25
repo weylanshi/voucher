@@ -28,7 +28,7 @@ public class CmContractBController {
     private CmContractBJPA cmContractBJPA;
     @RequestMapping(value = "/list")
     public Page<CmContractBEntity> list(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                                        @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
+                                        @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                                         @RequestParam(value = "strContractId",defaultValue = "") String strContractId,
                                         @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
                                         @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
