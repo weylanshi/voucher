@@ -23,7 +23,7 @@ public class CmExecuteBillController {
 
     @RequestMapping(value = "/list")
     public Page<ExecuteEntity>   list(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                                     @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
+                                     @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                                      @RequestParam(value = "cExecID",defaultValue = "") String cExecID,
                                      @RequestParam(value = "cContractID",defaultValue = "") String cContractID,
                                      @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
