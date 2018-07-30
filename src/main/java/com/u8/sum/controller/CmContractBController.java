@@ -94,5 +94,43 @@ public class CmContractBController {
 
         //return cmContractBJPA.findAll();
     }
+    @RequestMapping(value = "/inList")
+    public Page<CmContractBEntity> inList(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                        @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                        @RequestParam(value = "strContractId",defaultValue = "") String strContractId,
+                                        @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
+                                        @RequestParam(value = "cDefine10",defaultValue = "0") String  cDefine10,
+                                        @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
+                                        @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2,
+                                        @RequestParam(value = "strBisectionUnit",defaultValue = "") String strBisectionUnit,
+                                        @RequestParam(value = "customerCode",defaultValue = "") String customerCode){
+        Pageable pageable=new PageRequest(pageNum-1,pageSize);
+        if("1".equals(cDefine10)){
+            return cmContractBJPA.inList2(strContractId,strContractName,date1,date2,strBisectionUnit,pageable);
+        }else{
+            return cmContractBJPA.inList(strContractId,strContractName,date1,date2,strBisectionUnit,pageable);
+        }
 
+
+    }
+
+    @RequestMapping(value = "/outList")
+    public Page<CmContractBEntity> outList(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                          @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                          @RequestParam(value = "strContractId",defaultValue = "") String strContractId,
+                                          @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
+                                          @RequestParam(value = "cDefine10",defaultValue = "0") String  cDefine10,
+                                          @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
+                                          @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2,
+                                          @RequestParam(value = "strBisectionUnit",defaultValue = "") String strBisectionUnit,
+                                          @RequestParam(value = "customerCode",defaultValue = "") String customerCode){
+        Pageable pageable=new PageRequest(pageNum-1,pageSize);
+        if("1".equals(cDefine10)){
+            return cmContractBJPA.outList2(strContractId,strContractName,date1,date2,strBisectionUnit,pageable);
+        }else{
+            return cmContractBJPA.outList(strContractId,strContractName,date1,date2,strBisectionUnit,pageable);
+        }
+
+
+    }
 }

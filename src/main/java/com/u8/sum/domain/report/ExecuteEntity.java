@@ -12,6 +12,7 @@ public class ExecuteEntity {
     private String strContractName;
     private String strContractKind;
     private Double decRateMoney;
+    private String cDefine11;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -71,5 +72,13 @@ public class ExecuteEntity {
 
     public void setDecRateMoney(Double decRateMoney) {
         this.decRateMoney = decRateMoney;
+    }
+    @Column(name = "cdefine11")
+    public String getcDefine11() {
+        return cDefine11;
+    }
+
+    public void setcDefine11(String cDefine11) {
+        this.cDefine11 = cDefine11;
     }
 }
