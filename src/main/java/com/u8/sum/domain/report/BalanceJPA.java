@@ -31,7 +31,7 @@ public interface BalanceJPA extends JpaRepository<BalanceEntity,String>,JpaSpeci
             "on ht.strContractType=ty.cTypeCode\n" +
             "LEFT JOIN Customer cu \n" +
             "on ht.strBisectionUnit=cu.cCusCode\n" +
-            "where ht.strContractID like %?1% and js.dtCreateTime BETWEEN ?2 and ?3  ORDER BY js.cBalanceID ASC \n-- #pageable\n",
+            "where js.cBalanceID like %?1% and js.dtCreateTime BETWEEN ?2 and ?3  ORDER BY js.cBalanceID ASC \n-- #pageable\n",
             countQuery = "select count(*) \n" +
                     "from CM_Balance js \n" +
                     "LEFT JOIN  CM_Contract_B  ht \n" +
@@ -40,7 +40,7 @@ public interface BalanceJPA extends JpaRepository<BalanceEntity,String>,JpaSpeci
                     "on ht.strContractType=ty.cTypeCode\n" +
                     "LEFT JOIN Customer cu \n" +
                     "on ht.strBisectionUnit=cu.cCusCode\n" +
-                    "where ht.strContractID like %?1% and js.dtCreateTime BETWEEN ?2 and ?3",
+                    "where js.cBalanceID like %?1% and js.dtCreateTime BETWEEN ?2 and ?3",
             nativeQuery = true)
     public Page<BalanceEntity> getList(String cBalanceID,String date1,String date2,Pageable pageable);
 }
