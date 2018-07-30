@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class BalanceEntity {
-
+    private String guid;
     private String cBalanceID;//合同结算单ID
     private String strContractId;//合同编码
     private String strContractKind;//合同类型分类
@@ -17,8 +17,20 @@ public class BalanceEntity {
     private Double dblExchange;//汇率
     private Double dblTotalCurrency;//合同总金额
     private String dtCreateTime;//制单日期
+    private String cDefine12;
+
     @Basic
     @Id
+    @Column(name = "guid")
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+
+    @Basic
     @Column(name = "cbalanceid")
     public String getcBalanceID() {
         return cBalanceID;
@@ -125,5 +137,14 @@ public class BalanceEntity {
 
     public void setDtCreateTime(String dtCreateTime) {
         this.dtCreateTime = dtCreateTime;
+    }
+    @Basic
+    @Column(name = "cdefine12")
+    public String getcDefine12() {
+        return cDefine12;
+    }
+
+    public void setcDefine12(String cDefine12) {
+        this.cDefine12 = cDefine12;
     }
 }

@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class BalanceController {
     @Autowired
     private BalanceJPA balanceJPA;
-    @RequestMapping(value = "/list")
-    public Page<BalanceEntity> list(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+    @RequestMapping(value = "/inList")
+    public Page<BalanceEntity> inList(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
                                     @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                                     @RequestParam(value = "cBalanceID",defaultValue = "") String cBalanceID,
+                                    @RequestParam(value = "cDefine11",defaultValue = "0") String  cDefine11,
                                     @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
                                     @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2){
 
@@ -30,8 +31,31 @@ public class BalanceController {
 
         //Pageable pageable=new PageRequest(pageNum-1,pageSize,sort);
         Pageable pageable=new PageRequest(pageNum-1,pageSize);
-        //return cmExecuteBillJPA.getList(cExecID,pageable);
-        return balanceJPA.getList(cBalanceID,date1,date2,pageable);
+        if("1".equals(cDefine11)){
+            return balanceJPA.inList2(cBalanceID,date1,date2,pageable);
+        }else{
+            return balanceJPA.inList(cBalanceID,date1,date2,pageable);
+        }
+
+    }
+
+    @RequestMapping(value = "/outList")
+    public Page<BalanceEntity> outList(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                    @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                    @RequestParam(value = "cBalanceID",defaultValue = "") String cBalanceID,
+                                    @RequestParam(value = "cDefine11",defaultValue = "0") String  cDefine11,
+                                    @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
+                                    @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2){
+
+        //Sort sort=new Sort(Sort.Direction.DESC, "guid").and(new Sort(Sort.Direction.DESC, "cExecID"));
+
+        //Pageable pageable=new PageRequest(pageNum-1,pageSize,sort);
+        Pageable pageable=new PageRequest(pageNum-1,pageSize);
+        if("1".equals(cDefine11)){
+            return balanceJPA.outList2(cBalanceID,date1,date2,pageable);
+        }else{
+            return balanceJPA.outList(cBalanceID,date1,date2,pageable);
+        }
 
     }
 }

@@ -21,12 +21,13 @@ public class CmExecuteBillController {
     @Autowired
     private CmExecuteBillJPA cmExecuteBillJPA;
 
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "/inList")
     public Page<ExecuteEntity>   list(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
                                      @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                                      @RequestParam(value = "cExecID",defaultValue = "") String cExecID,
                                      @RequestParam(value = "cContractID",defaultValue = "") String cContractID,
                                      @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
+                                      @RequestParam(value = "cDefine11",defaultValue = "0") String cDefine11,
                                      @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
                                      @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2){
 
@@ -35,7 +36,34 @@ public class CmExecuteBillController {
         //Pageable pageable=new PageRequest(pageNum-1,pageSize,sort);
         Pageable pageable=new PageRequest(pageNum-1,pageSize);
         //return cmExecuteBillJPA.getList(cExecID,pageable);
-        return cmExecuteBillJPA.getList(cExecID,cContractID,strContractName,date1,date2,pageable);
+        if("1".equals(cDefine11)){
+            return cmExecuteBillJPA.inList2(cExecID,cContractID,strContractName,date1,date2,pageable);
+        }else{
+            return cmExecuteBillJPA.inList(cExecID,cContractID,strContractName,date1,date2,pageable);
+        }
+
+    }
+
+    @RequestMapping(value = "/outList")
+    public Page<ExecuteEntity>   outList(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                      @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                      @RequestParam(value = "cExecID",defaultValue = "") String cExecID,
+                                      @RequestParam(value = "cContractID",defaultValue = "") String cContractID,
+                                      @RequestParam(value = "strContractName",defaultValue = "") String strContractName,
+                                      @RequestParam(value = "cDefine11",defaultValue = "0") String cDefine11,
+                                      @RequestParam(value = "date1",defaultValue = "1900-01-01") String date1,
+                                      @RequestParam(value = "date2",defaultValue = "9999-01-01") String date2){
+
+        Sort sort=new Sort(Sort.Direction.DESC, "guid").and(new Sort(Sort.Direction.DESC, "cExecID"));
+
+        //Pageable pageable=new PageRequest(pageNum-1,pageSize,sort);
+        Pageable pageable=new PageRequest(pageNum-1,pageSize);
+        //return cmExecuteBillJPA.getList(cExecID,pageable);
+        if("1".equals(cDefine11)){
+            return cmExecuteBillJPA.outList2(cExecID,cContractID,strContractName,date1,date2,pageable);
+        }else{
+            return cmExecuteBillJPA.outList(cExecID,cContractID,strContractName,date1,date2,pageable);
+        }
 
     }
 }
