@@ -22,7 +22,7 @@ public interface AllEntityJPA extends JpaRepository<AllEntity,String>,JpaSpecifi
             "where ht.GUID=?1 ORDER BY ht.strContractID DESC \n-- #pageable\n",nativeQuery = true)
     public Page<AllEntity>  findHT(String guid,Pageable pageable);
 
-    @Query(value = "select\n" +
+    @Query(value = "select \n" +
             "ht.strContractID,\n" +
             "ht.strContractName,\n" +
             "ht.strCurrency,\n" +
@@ -31,7 +31,7 @@ public interface AllEntityJPA extends JpaRepository<AllEntity,String>,JpaSpecifi
             "ht.strBisectionUnit " +
             "from CM_ExecuteBill e \n" +
             "LEFT JOIN CM_Contract_B ht \n" +
-            "on e.cContractID=c.strContractID  \n" +
+            "on e.cContractID=ht.strContractID  \n" +
             "where e.GUID=?1 ORDER BY ht.strContractID DESC \n-- #pageable\n",nativeQuery = true)
     public Page<AllEntity>  findZXD(String guid,Pageable pageable);
 
