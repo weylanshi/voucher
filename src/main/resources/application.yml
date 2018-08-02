@@ -8,8 +8,8 @@ spring:
   datasource:
     report:
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-      #url: jdbc:sqlserver://58.246.247.114:5569;DatabaseName=UFDATA_100_2018
-      url: jdbc:sqlserver://192.168.120.30:1433;DatabaseName=UFDATA_100_2018
+      url: jdbc:sqlserver://58.246.247.114:5569;DatabaseName=UFDATA_100_2018
+#      url: jdbc:sqlserver://192.168.120.30:1433;DatabaseName=UFDATA_100_2018
       username: sa
       password: sa@123
 ---
