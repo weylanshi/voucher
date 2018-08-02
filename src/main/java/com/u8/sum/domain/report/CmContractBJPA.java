@@ -28,13 +28,13 @@ public interface CmContractBJPA extends JpaRepository<CmContractBEntity,String>,
             "from CM_Contract_B a\n" +
             "LEFT JOIN Customer b\n" +
             "on a.strBisectionUnit=b.cCusCode " +
-            "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 is null "+
+            "where a.strContractID LIKE %?1% and a.strContractName like %?2% "+
             "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='收'   ORDER BY a.strContractID DESC \n-- #pageable\n",
             countQuery = "SELECT count(*) \n" +
                     "from CM_Contract_B a\n" +
                     "LEFT JOIN Customer b\n" +
                     "on a.strBisectionUnit=b.cCusCode"+
-                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 is null " +
+                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% " +
                     "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='收'  ",
             nativeQuery = true)
     public Page<CmContractBEntity> inList(String a, String b, String c, String d, String e, Pageable pageable);
@@ -57,13 +57,13 @@ public interface CmContractBJPA extends JpaRepository<CmContractBEntity,String>,
             "from CM_Contract_B a\n" +
             "LEFT JOIN Customer b\n" +
             "on a.strBisectionUnit=b.cCusCode " +
-            "where a.strContractID LIKE %?1% and a.strContractName like %?2%  and a.cDefine10 is not null "+
+            "where a.strContractID LIKE %?1% and a.strContractName like %?2%  "+
             "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='收'   ORDER BY a.strContractID DESC \n-- #pageable\n",
             countQuery = "SELECT count(*) \n" +
                     "from CM_Contract_B a\n" +
                     "LEFT JOIN Customer b\n" +
                     "on a.strBisectionUnit=b.cCusCode"+
-                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 is not null " +
+                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% " +
                     "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='收'  ",
             nativeQuery = true)
     public Page<CmContractBEntity> inList2(String a, String b, String c, String d, String e, Pageable pageable);
@@ -86,13 +86,13 @@ public interface CmContractBJPA extends JpaRepository<CmContractBEntity,String>,
             "from CM_Contract_B a\n" +
             "LEFT JOIN Customer b\n" +
             "on a.strBisectionUnit=b.cCusCode " +
-            "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 IS NULL " +
+            "where a.strContractID LIKE %?1% and a.strContractName like %?2% " +
             "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='付' ORDER BY a.strContractID DESC \n-- #pageable\n",
             countQuery = "SELECT count(*) \n" +
                     "from CM_Contract_B a\n" +
                     "LEFT JOIN Customer b\n" +
                     "on a.strBisectionUnit=b.cCusCode"+
-                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 IS NULL " +
+                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% " +
                     "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='付' ",
             nativeQuery = true)
     public Page<CmContractBEntity> outList(String a1, String a2, String a3, String a4, String a5,Pageable pageable);
@@ -114,13 +114,13 @@ public interface CmContractBJPA extends JpaRepository<CmContractBEntity,String>,
             "from CM_Contract_B a\n" +
             "LEFT JOIN Customer b\n" +
             "on a.strBisectionUnit=b.cCusCode " +
-            "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 IS NOT NULL " +
+            "where a.strContractID LIKE %?1% and a.strContractName like %?2% " +
             "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='付' ORDER BY a.strContractID DESC \n-- #pageable\n",
             countQuery = "SELECT count(*) \n" +
                     "from CM_Contract_B a\n" +
                     "LEFT JOIN Customer b\n" +
                     "on a.strBisectionUnit=b.cCusCode"+
-                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% and a.cDefine10 IS NOT NULL " +
+                    "where a.strContractID LIKE %?1% and a.strContractName like %?2% " +
                     "and a.strContractOrderDate BETWEEN ?3 AND ?4 and a.strBisectionUnit LIKE %?5% and a.strWay='付' ",
             nativeQuery = true)
     public Page<CmContractBEntity> outList2(String a1, String a2, String a3, String a4, String a5,Pageable pageable);
